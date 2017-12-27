@@ -1,0 +1,19 @@
+jQuery(document).ready(function($) {
+  	// do you like me?
+  	$.getJSON("/wp-content/plugins/doyoulikeme/like.php?action=get", function (data) {
+    	$('.like-vote span').html(data.like);
+	});
+    $('.like-vote').click(function () {
+        if ($('.like-title').html() === 'Do you like me?') {
+            $.getJSON("/wp-content/plugins/doyoulikeme/like.php?action=add", function (data) {
+                if (data.success) {
+                    $('.like-vote span').html(data.like);
+                    $('.like-title').html('我也喜欢你 (*≧▽≦)');
+                }
+                else {
+                    $('.like-title').html('你的爱我已经感受到了~');
+                }
+            });
+        }
+    });
+});
