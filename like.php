@@ -42,7 +42,7 @@ function likes($id,$ip){
 
 function jsons($id){
 	global $wpdb;
-	$likes = $wpdb->get_var($wpdb->prepare("SELECT `likes` FROM wp_votes_num WHERE `id` = %d ", $id));
+	$likes = $wpdb->get_var($wpdb->prepare("SELECT `likes` FROM " . VOTES_NUM . " WHERE `id` = %d ", $id));
 	$arr['success'] = 1;
 	$arr['like'] = $likes;	
 	return json_encode($arr);
