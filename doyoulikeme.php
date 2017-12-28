@@ -1,7 +1,7 @@
 <?php
 /*
  * Plugin Name: Do you like me
- * Plugin URI: http://shawnzeng.com
+ * Plugin URI: https://shawnzeng.com/wordpress-plugin-do-you-like-me.html
  * Description: Add a 'do you like me' to your blog.
  * Version: 1.0
  * Author: <a href="http://i.mouto.org">卜卜口</a>开发 | 由<a href="https://shawnzeng.com">Shawn</a>移植至WordPress 
