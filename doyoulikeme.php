@@ -27,29 +27,27 @@ define('VOTES_IP', $wpdb->prefix . 'votes_ip');
 register_activation_hook(__FILE__, 'like_activation_cretable');
 function like_activation_cretable() {
     global $wpdb;
-	$table_1=$wpdb->prefix . 'votes_num';
-	$table_2=$wpdb->prefix . 'votes_ip';
-	$charset_collate = $wpdb->get_charset_collate();
-	$sql_1 = "CREATE TABLE ".VOTES_NUM." (
-		id mediumint(9) NOT NULL AUTO_INCREMENT,
-		likes int(10) NOT NULL DEFAULT '0',
-		PRIMARY KEY  (id)
-	) $charset_collate;";
-	$sql_2 = "CREATE TABLE ".VOTES_IP." (
-		id mediumint(9) NOT NULL AUTO_INCREMENT,
-		ip varchar(40) DEFAULT '' NOT NULL,
-		PRIMARY KEY  (id)
-	) $charset_collate;";
-	require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
-	dbDelta( $sql_1 );
+    $charset_collate = $wpdb->get_charset_collate();
+    $sql_1 = "CREATE TABLE ".VOTES_NUM." (
+        id mediumint(9) NOT NULL AUTO_INCREMENT,
+        likes int(10) NOT NULL DEFAULT '0',
+        PRIMARY KEY  (id)
+    ) $charset_collate;";
+    $sql_2 = "CREATE TABLE ".VOTES_IP." (
+        id mediumint(9) NOT NULL AUTO_INCREMENT,
+        ip varchar(40) DEFAULT '' NOT NULL,
+        PRIMARY KEY  (id)
+    ) $charset_collate;";
+    require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+    dbDelta( $sql_1 );
     dbDelta( $sql_2 );
 	
-	// update_option()方法，在options表里如果不存在更新字段，则会创建该字段,存在则更新该字段
-	update_option('like_version_num', LIKE_VERSION_NUM);
+    // update_option()方法，在options表里如果不存在更新字段，则会创建该字段,存在则更新该字段
+    update_option('like_version_num', LIKE_VERSION_NUM);
 	
-	$data['id'] = '1';
-	$data['likes'] = '0';
-	$wpdb->insert(VOTES_NUM, $data);
+    $data['id'] = '1';
+    $data['likes'] = '0';
+    $wpdb->insert(VOTES_NUM, $data);
 }
 
 // 当加载插件时，运行回调方法检查插件版本是否有更新,
